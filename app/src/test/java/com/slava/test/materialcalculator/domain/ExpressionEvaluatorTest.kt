@@ -67,5 +67,33 @@ class ExpressionEvaluatorTest{
         assertThat(evaluator.evaluate()).isEqualTo(6.5)
     }
 
+    @Test
+    fun `Complex expression is properly evaluated`(){
+
+        val evaluator = ExpressionEvaluator(
+            listOf(
+                ExpressionPart.Parentheses(ParenthesesType.Opening),
+                ExpressionPart.Number(3.0),
+                ExpressionPart.Op(Operation.ADD),
+                ExpressionPart.Parentheses(ParenthesesType.Opening),
+                ExpressionPart.Number(5.0),
+                ExpressionPart.Op(Operation.SUBTRACT),
+                ExpressionPart.Number(3.0),
+                ExpressionPart.Parentheses(ParenthesesType.Closing),
+                ExpressionPart.Parentheses(ParenthesesType.Closing),
+                ExpressionPart.Op(Operation.MULTIPLY),
+                ExpressionPart.Number(4.0),
+                ExpressionPart.Op(Operation.DIVIDE),
+                ExpressionPart.Number(2.0),
+                ExpressionPart.Op(Operation.ADD),
+                ExpressionPart.Number(3.0),
+                ExpressionPart.Op(Operation.PERCENT),
+                ExpressionPart.Number(10.0)
+            )
+        )
+        assertThat(evaluator.evaluate()).isEqualTo(10.3)
+
+    }
+
 
 }
