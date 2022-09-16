@@ -49,5 +49,48 @@ class ExpressionParserTest{
         assertThat(expected).isEqualTo(actual)
     }
 
+    @Test
+    fun `Complex expression is properly parsed`(){
+
+        parser = ExpressionParser("3+(5-3)x4/3+3%10")
+
+        val actual = parser.parse()
+
+        val expected = listOf(
+            ExpressionPart.Number(3.0),
+            ExpressionPart.Op(Operation.ADD),
+            ExpressionPart.Parentheses(ParenthesesType.Opening),
+            ExpressionPart.Number(5.0),
+            ExpressionPart.Op(Operation.SUBTRACT),
+            ExpressionPart.Number(3.0),
+            ExpressionPart.Parentheses(ParenthesesType.Closing),
+            ExpressionPart.Op(Operation.MULTIPLY),
+            ExpressionPart.Number(4.0),
+            ExpressionPart.Op(Operation.DIVIDE),
+            ExpressionPart.Number(3.0),
+            ExpressionPart.Op(Operation.ADD),
+            ExpressionPart.Number(3.0),
+            ExpressionPart.Op(Operation.PERCENT),
+            ExpressionPart.Number(10.0),
+        )
+        assertThat(expected).isEqualTo(actual)
+    }
+
+    @Test
+    fun `Expression with wrong symbol is not parsed`() {
+        parser = ExpressionParser("4-(4_5)")
+
+        try {
+
+            parser.parse()
+
+        } catch (ex: IllegalArgumentException){
+
+            assertThat(ex.message).isEqualTo("Invalid symbol")
+
+        }
+
+    }
+
 
 }
