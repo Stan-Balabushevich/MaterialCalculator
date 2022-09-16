@@ -74,7 +74,21 @@ class ExpressionParserTest{
             ExpressionPart.Number(10.0),
         )
         assertThat(expected).isEqualTo(actual)
+    }
 
+    @Test
+    fun `Expression with wrong symbol is not parsed`() {
+        parser = ExpressionParser("4-(4_5)")
+
+        try {
+
+            parser.parse()
+
+        } catch (ex: IllegalArgumentException){
+
+            assertThat(ex.message).isEqualTo("Invalid symbol")
+
+        }
 
     }
 

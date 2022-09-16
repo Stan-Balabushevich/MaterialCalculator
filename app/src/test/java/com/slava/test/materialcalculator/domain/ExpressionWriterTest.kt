@@ -8,9 +8,33 @@ class ExpressionWriterTest{
 
     private lateinit var writer: ExpressionWriter
 
+    private lateinit var evaluator: ExpressionEvaluator
+
     @Before
     fun setUp() {
         writer = ExpressionWriter()
+
+        evaluator = ExpressionEvaluator(
+            listOf(
+                ExpressionPart.Number(4.0),
+                ExpressionPart.Op(Operation.ADD),
+                ExpressionPart.Number(5.0),
+            )
+        )
+    }
+
+    @Test
+    fun `Evaluator properly show string`(){
+
+//        writer.processAction(CalculatorAction.Number(5))
+//        writer.processAction(CalculatorAction.Op(Operation.ADD))
+//        writer.processAction(CalculatorAction.Number(4))
+        writer.processAction(CalculatorAction.Calculate)
+
+//        writer.expression = evaluator.evaluate().toString()
+
+        assertThat(writer.expression).isEqualTo("0.0")
+
     }
 
     @Test
@@ -39,5 +63,40 @@ class ExpressionWriterTest{
         writer.processAction(CalculatorAction.Parentheses)
 
         assertThat(writer.expression).isEqualTo("(6)")
+    }
+
+    @Test
+    fun `Delete button works`(){
+        writer.processAction(CalculatorAction.Parentheses)
+        writer.processAction(CalculatorAction.Number(6))
+        writer.processAction(CalculatorAction.Delete)
+
+        assertThat(writer.expression).isEqualTo("(")
+
+    }
+
+    @Test
+    fun `Clear button works`(){
+        writer.processAction(CalculatorAction.Parentheses)
+        writer.processAction(CalculatorAction.Number(6))
+        writer.processAction(CalculatorAction.Clear)
+
+        assertThat(writer.expression).isEqualTo("")
+
+    }
+
+    @Test
+    fun `Expression with decimal are parsed`(){
+
+        writer.processAction(CalculatorAction.Parentheses)
+        writer.processAction(CalculatorAction.Number(6))
+        writer.processAction(CalculatorAction.Decimal)
+        writer.processAction(CalculatorAction.Decimal)
+        writer.processAction(CalculatorAction.Number(6))
+        writer.processAction(CalculatorAction.Decimal)
+        writer.processAction(CalculatorAction.Parentheses)
+
+        assertThat(writer.expression).isEqualTo("(6.6)")
+
     }
 }
