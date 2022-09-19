@@ -24,16 +24,14 @@ class ExpressionWriterTest{
     }
 
     @Test
-    fun `Evaluator properly show string`(){
+    fun `Evaluator properly calculate`(){
 
-//        writer.processAction(CalculatorAction.Number(5))
-//        writer.processAction(CalculatorAction.Op(Operation.ADD))
-//        writer.processAction(CalculatorAction.Number(4))
+        writer.processAction(CalculatorAction.Number(5))
+        writer.processAction(CalculatorAction.Op(Operation.ADD))
+        writer.processAction(CalculatorAction.Number(4))
         writer.processAction(CalculatorAction.Calculate)
 
-//        writer.expression = evaluator.evaluate().toString()
-
-        assertThat(writer.expression).isEqualTo("0.0")
+        assertThat(writer.expression).isEqualTo("9.0")
 
     }
 
