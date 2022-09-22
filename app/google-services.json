@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "955061232949",
+    "project_id": "material-calculator-8220d",
+    "storage_bucket": "material-calculator-8220d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955061232949:android:7d1660934ceb157184187c",
+        "android_client_info": {
+          "package_name": "com.slava.test.materialcalculator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "955061232949-hg8vqkhjkvbus7hds9h1tovplmatt3i6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBE6tz5vudPIKd979tWRY1uW3xoggGCtSM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "955061232949-hg8vqkhjkvbus7hds9h1tovplmatt3i6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+
+  "configuration_version": "1"
+}
